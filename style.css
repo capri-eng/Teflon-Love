@@ -1,0 +1,817 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+
+/* =========================
+   BASIC SETTINGS
+========================= */
+
+:root {
+    --pink: #ff4f9a;
+    --deep-pink: #9c174f;
+    --light-pink: #fff0f7;
+    --rose: #ffd1e5;
+    --text: #54213a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7fb,
+            #ffe6f1 45%,
+            #ffffff
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   PASSKEY SCREEN
+========================= */
+
+#lock {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.8),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #ff8fbe,
+            #ff4f9a 48%,
+            #a91658
+        );
+
+    transition:
+        opacity .9s ease,
+        visibility .9s ease;
+}
+
+#lock.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+.lock-card {
+
+    width: min(90%, 390px);
+
+    padding: 38px 28px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.45);
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.16);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 70px
+        rgba(88,5,42,.3);
+
+    color: white;
+
+    animation:
+        cardIn 1s ease;
+}
+
+
+.lock-heart {
+
+    font-size: 58px;
+
+    animation:
+        pulse 1.7s infinite;
+}
+
+
+.lock-card h1 {
+
+    margin: 10px 0 4px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 42px;
+}
+
+
+.lock-card p {
+
+    margin: 0 0 22px;
+
+    opacity: .9;
+}
+
+
+#passkey {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    font-size: 22px;
+
+    letter-spacing: 8px;
+
+    background: rgba(255,255,255,.92);
+
+    color: var(--deep-pink);
+}
+
+
+.enter {
+
+    width: 100%;
+
+    margin-top: 14px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    background: white;
+
+    color: var(--deep-pink);
+
+    font-weight: 600;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(75,0,35,.18);
+
+    transition: .25s;
+}
+
+
+.enter:hover {
+    transform: translateY(-2px);
+}
+
+
+#error {
+
+    height: 22px;
+
+    margin-top: 9px;
+
+    font-size: 13px;
+
+    color: #fff0f7;
+}
+
+
+/* =========================
+   MAIN WEBSITE
+========================= */
+
+#site {
+
+    opacity: 0;
+
+    transition:
+        opacity 1.2s ease;
+}
+
+#site.show {
+    opacity: 1;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffffff,
+            #ffe5f0 55%,
+            #ffc4dc
+        );
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 760px;
+}
+
+
+.kicker {
+
+    text-transform: uppercase;
+
+    letter-spacing: 5px;
+
+    font-size: 12px;
+
+    color: var(--deep-pink);
+
+    font-weight: 600;
+}
+
+
+.hero h1 {
+
+    margin: 14px 0 8px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(64px, 15vw, 130px);
+
+    line-height: .85;
+
+    color: var(--deep-pink);
+
+    text-shadow:
+        0 8px 30px
+        rgba(156,23,79,.13);
+}
+
+
+.subtitle {
+
+    font-size: 18px;
+
+    color: #8a4663;
+}
+
+
+.scroll {
+
+    display: inline-block;
+
+    margin-top: 28px;
+
+    padding: 13px 22px;
+
+    border-radius: 999px;
+
+    text-decoration: none;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff4f9a,
+            #c72568
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(199,37,104,.25);
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.heart {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    font-size: 20px;
+
+    opacity: .5;
+
+    animation:
+        float 9s linear infinite;
+}
+
+
+.heart:nth-child(1) {
+    left: 7%;
+}
+
+
+.heart:nth-child(2) {
+    left: 22%;
+    animation-delay: 2s;
+    font-size: 28px;
+}
+
+
+.heart:nth-child(3) {
+    left: 48%;
+    animation-delay: 4s;
+}
+
+
+.heart:nth-child(4) {
+    left: 72%;
+    animation-delay: 1s;
+    font-size: 30px;
+}
+
+
+.heart:nth-child(5) {
+    left: 90%;
+    animation-delay: 5s;
+}
+
+
+/* =========================
+   SPARKLES
+========================= */
+
+.sparkle {
+
+    position: absolute;
+
+    font-size: 18px;
+
+    animation:
+        twinkle 2.5s infinite;
+}
+
+
+.sparkle1 {
+    top: 18%;
+    left: 14%;
+}
+
+
+.sparkle2 {
+    top: 30%;
+    right: 12%;
+    animation-delay: 1s;
+}
+
+
+.sparkle3 {
+    bottom: 20%;
+    left: 18%;
+    animation-delay: .5s;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+
+    padding: 85px 20px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+.section-title {
+
+    text-align: center;
+
+    margin-bottom: 38px;
+}
+
+
+.section-title .small {
+
+    color: var(--pink);
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+}
+
+
+.section-title h2 {
+
+    margin: 6px 0 0;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(42px, 9vw, 70px);
+
+    line-height: 1;
+
+    color: var(--deep-pink);
+}
+
+
+/* =========================
+   LOVE LETTER
+========================= */
+
+.letter {
+
+    background:
+        rgba(255,255,255,.78);
+
+    border:
+        1px solid
+        rgba(255,79,154,.18);
+
+    border-radius: 30px;
+
+    padding:
+        clamp(25px,6vw,55px);
+
+    box-shadow:
+        0 20px 60px
+        rgba(139,31,80,.10);
+
+    line-height: 1.95;
+
+    font-size: 15px;
+}
+
+
+.letter p {
+
+    margin:
+        0 0 19px;
+}
+
+
+.letter p:last-child {
+
+    margin-bottom: 0;
+}
+
+
+.dropcap:first-letter {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 58px;
+
+    color: var(--pink);
+
+    float: left;
+
+    line-height: .8;
+
+    padding:
+        7px 8px 0 0;
+}
+
+
+/* =========================
+   PHOTO GALLERY
+========================= */
+
+.gallery {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 18px;
+}
+
+
+.photo {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    aspect-ratio: 3 / 4;
+
+    background: #ffd4e6;
+
+    box-shadow:
+        0 15px 35px
+        rgba(120,20,70,.13);
+}
+
+
+.photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .7s ease;
+}
+
+
+.photo:hover img {
+
+    transform:
+        scale(1.06);
+}
+
+
+.photo::after {
+
+    content: "♥";
+
+    position: absolute;
+
+    right: 14px;
+
+    bottom: 10px;
+
+    color: white;
+
+    text-shadow:
+        0 2px 8px
+        #9c174f;
+
+    font-size: 22px;
+
+    opacity: .9;
+}
+
+
+/* =========================
+   FINAL SECTION
+========================= */
+
+.final {
+
+    min-height: 75vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #fff0f7,
+            #ffd2e5,
+            #ffffff
+        );
+}
+
+
+.final-box {
+
+    max-width: 700px;
+}
+
+
+.final-hearts {
+
+    font-size: 42px;
+}
+
+
+.final h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(48px,11vw,90px);
+
+    line-height: .9;
+
+    color: var(--deep-pink);
+
+    margin: 15px 0;
+}
+
+
+.final p {
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+.signature {
+
+    margin-top: 25px;
+
+    color: var(--pink);
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 24px;
+
+    color: #a45a79;
+
+    font-size: 12px;
+
+    background: #fff5fa;
+}
+
+
+/* =========================
+   SCROLL ANIMATION
+========================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform: none;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes float {
+
+    to {
+
+        transform:
+            translateY(-115vh)
+            rotate(20deg);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes pulse {
+
+    50% {
+
+        transform:
+            scale(1.12);
+    }
+}
+
+
+@keyframes twinkle {
+
+    50% {
+
+        transform:
+            scale(1.5);
+
+        opacity: .35;
+    }
+}
+
+
+@keyframes cardIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(.97);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: none;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .gallery {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap: 10px;
+    }
+
+
+    .photo {
+
+        border-radius: 17px;
+    }
+
+
+    .letter {
+
+        font-size: 14px;
+
+        line-height: 1.85;
+    }
+
+}
